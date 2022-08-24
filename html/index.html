@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <style>
+            .ball {
+                height: 100px;
+                width: 100px;
+                border-radius: 50%;
+                background: blue;
+                margin: 10px;
+            }
+            #ball_text_area {
+                float: right;
+            }
+            #ball_area {
+                border: black solid 1px;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <h1>JAVASRIPT</h1>
+
+        <h2>자바스크립트는 무엇인가?</h2>
+        <p>HTML의 요소를 조작할 수 있는 동적인 프로그래밍 언어이다</p>
+
+        <h2>변수</h2>
+
+        <p>자바스크립트에서는 변수선언시 별도로 자료형을 지정하지 않는다.</p>
+        <p>대신 let, var, const를 쓴다.</p>
+        <p>자바스크립트에서 사용하는 자료형으로는 문자열, 숫자, 불린, 배열이 있다.</p>
+
+        <p>var는 중복 선언할 수 있다.</p>
+
+        <p>let은 중복 선언할 수 없다.</p>
+        <p>하면 SyntaxError 가 발생한다.</p>
+
+        <p>const는 immutable 하다. 일종의 상수</p>
+        <p>재대입하면 TypeError가 발생한다.</p>
+
+        <h2>연산자</h2>
+
+        <p>java와 같다.</p>
+        <p>비교 연산의 경우 조금 다른데,</p>
+        <p>== 은 타입과 상관없이 값이 같은지를 비교하고</p>
+        <p>=== 은 타입까지 같아야 true가 된다. </p>
+
+        <h2>이벤트</h2>
+
+        <p>자바스크립트에서 함수는 버튼을 클릭하거나 페이지가 로드될 때 실행된다.</p>
+        <p>이렇게 함수를 실행시키는 어떤 행동이나 현상을 이벤트라고 한다.</p>
+        <p>첫번째 방법은 HTML 태그의 속성으로 이벤트를 넣는 것이다. ex) onclick</p>
+        <p>두번째는 자바스크립트에서 HTML 태그의 속성을 바꿔주는 것이다.</p>
+        <P>이벤트가 발생했을 때 실행되는 함수를 이벤트 리스너라고 한다.</P>
+        <p>세번째는 요소에 이벤트 리스너를 전달하는 것이다. ex) "click"</p>
+
+
+        <button id="btn1">button1</button>
+        <button id="btn2" onclick="showMsg();">button2</button>
+        <button id="btn3">인사봇</button>
+        
+
+        <div id="btn_area"></div><br>
+
+
+        <div id="ball_area">
+            <div class="ball" id="blueball"></div>
+            <div class="ball" id="redball"></div>
+            <div class="ball" id="blackball"></div>
+            <div class="ball" id="greenball"></div>
+            <div id="ball_text_area"></div>
+            
+            <button id="btn4">색상변경</button>
+            <button id="btn5">리셋</button>
+            <button id="btn6">리셋 취소</button>
+            <button id="btn7">이벤트리스너 삭제</button>
+            <button id="ebtn">지우기</button><br>
+        </div>
+
+        <h2>콜백 함수란</h2>
+
+        <div id="cb">
+            <p>자바스크립트에서는 함수조차도 객체이다. </p>
+            <p>그래서 함수를 함수의 파라미터로 넣을 수 있다.</p>
+            <p>이 때 파라미터로 넣어준 함수를 콜백 함수라고 한다.</p>
+        </div>
+
+
+    <script src="../js/js.js"></script>
+
+    </body>
+</html>
