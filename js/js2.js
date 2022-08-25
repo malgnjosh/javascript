@@ -53,9 +53,16 @@ var arr1 = ["abc", "def"];
 document.getElementById('btn11').onclick = function() {
     var arr2 = ["ghi"];
     var arr3 = ["jkl"];
-    arr1 = arr1.concat(arr2, arr3)
+    arr1 = arr1.concat(arr2, arr3);
     document.getElementById('output11').innerHTML = arr1;
 }
+
+document.getElementById('btn11.2').onclick = function() {
+    arr1.push("zzz");
+    document.getElementById('output11.2').innerHTML = arr1;
+}
+
+
 
 document.getElementById('btn12').onclick = function() {
     arr1.fill("ABC");
@@ -73,4 +80,50 @@ document.getElementById('btn14').onclick = function() {
     // });
     const result14 = arr1.filter((str) => str === "lll");
     document.getElementById('output14').innerHTML = result14;
+}
+
+var arr100 = new Array();
+arr100[99] = "foo";
+document.getElementById('btn15').onclick = function() {
+    document.getElementById('output15').innerHTML = arr100;
+}
+
+document.getElementById('btn16').onclick = function() {
+    document.getElementById('output16').innerHTML = arr100.length;
+}
+
+var dogs = ["siba", "jindo", "shepherd", "sigorjabjong", "mydog"];
+document.getElementById('output17_2').innerHTML = dogs;
+document.getElementById('btn17').onclick = function() {
+    for(const currentDog of dogs){
+        if(currentDog == "mydog"){
+            var result17 = "찾았다!";
+        }
+    }
+    document.getElementById('output17').innerHTML = result17;
+}
+
+
+document.getElementById('btn17').onclick = function() {
+    for(const currentDog of dogs){
+        if(currentDog == "mydog"){
+            var result17 = "찾았다!";
+        }
+    }
+    document.getElementById('output17').innerHTML = result17;
+}
+
+document.getElementById('btn17_3').onclick = function() {
+    document.getElementById('output17_3').innerHTML = dogs.includes("mydog");
+}
+
+document.getElementById('btn18').onclick = function() {
+    document.getElementById('output18').innerHTML = dogs.indexOf("mydog");
+}
+
+document.getElementById('btn19').onclick = function() {
+    dogs.forEach(function(currentDog, index, array){
+        if(currentDog === "mydog")
+            document.getElementById('output19').innerHTML = index + " " + array;
+    })
 }
