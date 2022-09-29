@@ -1,6 +1,12 @@
 <html>
     <head>
         <style>
+            body {
+                margin: 100px;
+            }
+            input, h2 {
+                margin-left: 10px;
+            }
             .ball {
                 margin-left: 200px;
                 background: aquamarine;
@@ -16,6 +22,7 @@
             .container {
                 width: 100%;
                 height: 500px;
+                border: 1px solid black;
             }
             .border {
                 border: 1px solid black;
@@ -27,6 +34,7 @@
                 margin: 10px;
                 height: 60px;
                 width: 550px;
+                padding: 5px;
                 font-size: 20px;
                 font-weight: bold;
             }
@@ -37,54 +45,56 @@
                 width: 200px;
             }
         </style>
-        <script src="../js/drag.js"></script>
+        <script src="http://code.jquery.com/jquery-3.5.1.min.js"></script>
     </head>
     <body 
+        onresize="showMsg('win_indi2', 'onresize는 브라우저 크기 변경시');"
         onafterprint="showMsg('win_indi', 'onafterprint는 인쇄 후');" 
         onbeforeprint="showMsg('win_indi', 'onbeforeprint는 인쇄 하기 직전');"
-        onload="show('onload');" 
+        
+        onload="setInterval(()=>showMsg('win_indi2', 'onload는 로드 완료시'), 1000);" 
+        onpageshow="setInterval(()=>showMsg('win_indi', 'onpageshow는 다른 페이지에서 왔을 때'), 1000);"
+        
+        onpagehide="alert('onpagehide는 다른 페이지로 옮겨갈 때, 뒤로가기')"
         onunload="alert('onunload');"
         onbeforeunload="alert('onbeforeunload');"
+        
         onerror="alert('onerror는 에러 발생시');"
         onoffline="showMsg('win_indi', 'onoffline은 오프라인 작업시');"
         ononline="showMsg('win_indi', 'ononline은 온라인 작업시');"
-        onresize="showMsg('win_indi2', 'onresize는 브라우저 크기 변경시');"
-        onmessage="showMsg('win_indi', 'onmessage는 이벤트 소스로부터 메시지를 받았을 때 발생.');"
-        onpagehide="alert('hide')"
-    >
-        <div class="container border">
-            <h2>윈도우 이벤트 - &lt;body&gt; </h2>
-            <p>인쇄 전 후</p>
-            <div id="onload" class="ball hide">onload는<br>로드완료시</div>
 
+        onmessage="showMsg('win_indi', 'onmessage는 이벤트 소스로부터 메시지를 받았을 때 발생.');"
+        
+        onpopstate="alert('popstate')"
+        onstorage="alert('onstorage')"
+        onhashchange="alert('onhashchange')"
+    >
+
+        <h1>HTML 이벤트 태그</h1>
+        <script>//error</script>
+
+        <div class="nav">
+            <a href="index2.html">link</a>
+        </div>
+
+        <div class="container">
+            <h2>윈도우 이벤트 - &lt;body&gt; </h2>
             <div class="border indicator" id="win_indi"></div>
             <div class="border indicator" id="win_indi2"></div>
         </div>
-    
-        onhashchange url의 anchor 파트 변화시
-        onmessage 메시지 트리거시
-        onpagehide navigate away
-        onpageshow navigate to
-        onpopstate window history change
-        onstorage web storage 업데이트시
 
         <div class="container">
             <h2>form 이벤트</h2>
-            <input type="text" id="myInput" oninput="inputHandler()">
-            <p id="demo"></p>
+            <input type="text" oninput="showMsg('form_indi', 'oninput:' + this.value);">
+            <div class="border indicator" id="form_indi"></div>
+            <div class="border indicator" id="form_indi2"></div>
         </div>
-        <script>
-            function inputHandler() {
-                var x = document.getElementById("myInput").value;
-                document.getElementById("demo").innerHTML = "You wrote: " + x;
-            }
-        </script>
-        
-        <div class="container border">            
+
+        <div class="container">            
             <h2>드래그 이벤트</h2>
             <div class="ball" draggable="true"   
                 ondragstart="showMsg('indicator', 'ondragstart는 이동을 시작하면 발생합니다.');"
-                ondragend="showMsg('indicator', 'ondragend는 손을 떼는 순간 발생합니다.');">
+                ondragend="showMsg('indicator2', 'ondragend는 손을 떼는 순간 발생합니다.');">
                 
             </div>                        
             
@@ -92,36 +102,71 @@
                 <div class="border indicator" id="indicator"></div>
                 <div class="border indicator" id="indicator2"></div>           
             </div>
+
             <div class="border" id="target"
                 ondragenter="showMsg('indicator2', 'ondragenter는 타겟에 최초 진입했을 때 발생합니다.');"           
                 ondragleave="showMsg('indicator', 'ondragleave는 타겟을 떠났을 때 발생합니다.');"            
                 ondragover="showMsg('indicator', 'ondragover는 타겟 위로 올라가면 발생합니다.');"
-                ondrop="colorChange('target', 'red'); ">
+                ondrop="showMsg('indicator', 'ondrop은 타겟에 넣으면 발생합니다.'); colorChange('target', 'red'); ">
             </div>        
         </div>
-
-
-
-
- <select size= 4 id="select1" ondragstart="onDragStart(event)">
- <option id="option1_1" draggable="true">옵션1-1</option> <!-- 드래그 데이터 -->
- <option id="option1_2" draggable="true">옵션1-2</option> <!-- 드래그 데이터 -->
- <option id="option1_3" draggable="true">옵션1-3</option> <!-- 드래그 데이터 -->
- </select>
- <select size= 4 id="select2"
- ondragenter="onDragEnter(event)"
- ondragover="onDragOver(event)"
- ondrop="onDrop(event)">
- <option id="option2_1">옵션2-1</option>
- <option id="option2_2">옵션2-2</option>
- <option id="option2_3">옵션2-3</option>
- </select>
  
- <br><br><div id="msg"></div>
-    
+
+
+        form
+
+        onblur 포커스를 잃었을때
+        onfocus 포커스를 가질 때
+        onchange 요소가 변할 떄
+        
+        
+        oncontextmenu 컨텍스트 메뉴가 트리거
+        oninput 입력을 받을 때
+        
+        
+        
+        oninvalid 무효일때
+        onreset 리셋버튼 클릭
+        
+        <input type=“search” onsearch=“alert(‘onsearch’);” />
+        
+        <input type=“text” 
+        onselect=“scratch(this);”/>
+        
+        function scratch() }
+          this.
+        }
+        
+        onsubmit submitted
+        
+        keyboard
+        
+        onkeydown 누르는 중
+        onkeypress 누름
+        onkeyup 뗌
+        
+        mouse
+        
+        onclick 클릭
+        ondblclick 더블클릭
+        onmousedown 마우스 누름
+        onmousemove 위로 지나감
+        onmouseout 벗어남
+        onmoseup 뗌
+        onwheel 요소 위로 휠 업 다운
+        
+
+        clipboard
+
+        oncopy
+        oncut
+        onpaste
+        
+
+
 
     <script>
-        //error 
+        
         function colorChange(tgt, color) {
             document.getElementById(tgt).style.background = color;
         }
@@ -145,6 +190,9 @@
             var el = document.getElementById(id);
             setInterval(() => el.style.display = "block", 2000);
         }
-    </script>
+        $('#target').on('dragover', function(event) {
+            event.preventDefault();
+        })
+        </script>
     </body>
 </html>
