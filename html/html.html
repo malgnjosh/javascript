@@ -1,0 +1,150 @@
+<html>
+    <head>
+        <style>
+            .ball {
+                margin-left: 200px;
+                background: aquamarine;
+                border-radius:100px;
+                height: 100px;
+                width: 100px;
+                padding-left: 40px;
+                padding-top: 30px;
+            }
+            .hide {
+                display: none;
+            }
+            .container {
+                width: 100%;
+                height: 500px;
+            }
+            .border {
+                border: 1px solid black;
+            }
+            .indicator_area {
+                float: right;
+            }
+            .indicator {
+                margin: 10px;
+                height: 60px;
+                width: 550px;
+                font-size: 20px;
+                font-weight: bold;
+            }
+            #target {
+                border: 2px dotted black;
+                margin: 10px;
+                height: 200px;
+                width: 200px;
+            }
+        </style>
+        <script src="../js/drag.js"></script>
+    </head>
+    <body 
+        onafterprint="showMsg('win_indi', 'onafterprint는 인쇄 후');" 
+        onbeforeprint="showMsg('win_indi', 'onbeforeprint는 인쇄 하기 직전');"
+        onload="show('onload');" 
+        onunload="alert('onunload');"
+        onbeforeunload="alert('onbeforeunload');"
+        onerror="alert('onerror는 에러 발생시');"
+        onoffline="showMsg('win_indi', 'onoffline은 오프라인 작업시');"
+        ononline="showMsg('win_indi', 'ononline은 온라인 작업시');"
+        onresize="showMsg('win_indi2', 'onresize는 브라우저 크기 변경시');"
+        onmessage="showMsg('win_indi', 'onmessage는 이벤트 소스로부터 메시지를 받았을 때 발생.');"
+        onpagehide="alert('hide')"
+    >
+        <div class="container border">
+            <h2>윈도우 이벤트 - &lt;body&gt; </h2>
+            <p>인쇄 전 후</p>
+            <div id="onload" class="ball hide">onload는<br>로드완료시</div>
+
+            <div class="border indicator" id="win_indi"></div>
+            <div class="border indicator" id="win_indi2"></div>
+        </div>
+    
+        onhashchange url의 anchor 파트 변화시
+        onmessage 메시지 트리거시
+        onpagehide navigate away
+        onpageshow navigate to
+        onpopstate window history change
+        onstorage web storage 업데이트시
+
+        <div class="container">
+            <h2>form 이벤트</h2>
+            <input type="text" id="myInput" oninput="inputHandler()">
+            <p id="demo"></p>
+        </div>
+        <script>
+            function inputHandler() {
+                var x = document.getElementById("myInput").value;
+                document.getElementById("demo").innerHTML = "You wrote: " + x;
+            }
+        </script>
+        
+        <div class="container border">            
+            <h2>드래그 이벤트</h2>
+            <div class="ball" draggable="true"   
+                ondragstart="showMsg('indicator', 'ondragstart는 이동을 시작하면 발생합니다.');"
+                ondragend="showMsg('indicator', 'ondragend는 손을 떼는 순간 발생합니다.');">
+                
+            </div>                        
+            
+            <div class="indicator_area">
+                <div class="border indicator" id="indicator"></div>
+                <div class="border indicator" id="indicator2"></div>           
+            </div>
+            <div class="border" id="target"
+                ondragenter="showMsg('indicator2', 'ondragenter는 타겟에 최초 진입했을 때 발생합니다.');"           
+                ondragleave="showMsg('indicator', 'ondragleave는 타겟을 떠났을 때 발생합니다.');"            
+                ondragover="showMsg('indicator', 'ondragover는 타겟 위로 올라가면 발생합니다.');"
+                ondrop="colorChange('target', 'red'); ">
+            </div>        
+        </div>
+
+
+
+
+ <select size= 4 id="select1" ondragstart="onDragStart(event)">
+ <option id="option1_1" draggable="true">옵션1-1</option> <!-- 드래그 데이터 -->
+ <option id="option1_2" draggable="true">옵션1-2</option> <!-- 드래그 데이터 -->
+ <option id="option1_3" draggable="true">옵션1-3</option> <!-- 드래그 데이터 -->
+ </select>
+ <select size= 4 id="select2"
+ ondragenter="onDragEnter(event)"
+ ondragover="onDragOver(event)"
+ ondrop="onDrop(event)">
+ <option id="option2_1">옵션2-1</option>
+ <option id="option2_2">옵션2-2</option>
+ <option id="option2_3">옵션2-3</option>
+ </select>
+ 
+ <br><br><div id="msg"></div>
+    
+
+    <script>
+        //error 
+        function colorChange(tgt, color) {
+            document.getElementById(tgt).style.background = color;
+        }
+
+        function showMsg(tgt, msg) {
+            document.getElementById(tgt).innerHTML = msg;
+        }
+        function bigger(el) {
+            el.style.width = "200px";
+            el.style.height = "200px";
+        }
+        function smaller(el) {
+            el.style.width = "100px";
+            el.style.height = "100px";
+        }
+        function hide(id) {
+            var el = document.getElementById(id);
+            el.style.display = "none";
+        }
+        function show(id) {
+            var el = document.getElementById(id);
+            setInterval(() => el.style.display = "block", 2000);
+        }
+    </script>
+    </body>
+</html>
