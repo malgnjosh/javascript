@@ -85,7 +85,12 @@
 
         <div class="container">
             <h2>form 이벤트</h2>
-            <input type="text" oninput="showMsg('form_indi', 'oninput:' + this.value);">
+            <input type="text" 
+                oninput="showMsg('form_indi', 'oninput:' + this.value);"
+                onblur="showMsg('form_indi','onblur는 요소를 벗어날 때 발생');"
+                onfocus="showMsg('form_indi2','onfocus는 요소가 포커스를 받으면 발생');"
+                onchange="showMsg('','');"
+            >
             <div class="border indicator" id="form_indi"></div>
             <div class="border indicator" id="form_indi2"></div>
         </div>
@@ -115,7 +120,6 @@
 
         form
 
-        onblur 포커스를 잃었을때
         onfocus 포커스를 가질 때
         onchange 요소가 변할 떄
         
