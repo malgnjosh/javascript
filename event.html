@@ -5,7 +5,7 @@
                 margin: 100px;
             }
             input, h2 {
-                margin-left: 10px;
+                margin: 10px;
             }
             .ball {
                 margin-left: 200px;
@@ -23,6 +23,7 @@
                 width: 100%;
                 height: 500px;
                 border: 1px solid black;
+                margin: 10px;
             }
             .border {
                 border: 1px solid black;
@@ -49,8 +50,8 @@
     </head>
     <body 
         onresize="showMsg('win_indi2', 'onresize는 브라우저 크기 변경시');"
-        onafterprint="showMsg('win_indi', 'onafterprint는 인쇄 후');" 
-        onbeforeprint="showMsg('win_indi', 'onbeforeprint는 인쇄 하기 직전');"
+        onafterprint="alert('onafterprint는 인쇄 후');" 
+        onbeforeprint="alert('onbeforeprint는 인쇄 하기 직전');"
         
         onload="setInterval(()=>showMsg('win_indi2', 'onload는 로드 완료시'), 1000);" 
         onpageshow="setInterval(()=>showMsg('win_indi', 'onpageshow는 다른 페이지에서 왔을 때'), 1000);"
@@ -69,9 +70,27 @@
         onstorage="alert('onstorage')"
         onhashchange="alert('onhashchange')"
     >
+  <!--
+    <div class="container border">
+        <div class="ball" id="blueball" draggable="true"
+        ondragstart="document.getElementById('indicator').stlye.background = blue;"
+        ondragenter="document.getElementById('indicator').innerHTML = 'enter';"
+        ondragleave="document.getElementById('indicator').innerHTML = 'leave';"
+        ondragend="alert('end');"
+        ></div>
+        
+        <div class="border" id="indicator"></div>
+        
+        <div class="border" id="target" 
+        ondragover="document.getElementById('indicator').innerHTML = 'over';"
+        ondrop="document.getElementById('indicator').innerHTML = 'drop';"
+        ></div>
 
-        <h1>HTML 이벤트 태그</h1>
+    </div> -->
+
+
         <script>//error</script>
+        <h1>HTML 이벤트 태그</h1>
 
         <div class="nav">
             <a href="index2.html">link</a>
@@ -83,25 +102,40 @@
             <div class="border indicator" id="win_indi2"></div>
         </div>
 
-        <div class="container">
+        <div class="container" oncontextmenu="alert('oncontextmenu: 우클릭 금지!!!')">
             <h2>form 이벤트</h2>
+            
             <input type="text" 
                 oninput="showMsg('form_indi', 'oninput:' + this.value);"
                 onblur="showMsg('form_indi','onblur는 요소를 벗어날 때 발생');"
                 onfocus="showMsg('form_indi2','onfocus는 요소가 포커스를 받으면 발생');"
-                onchange="showMsg('','');"
+                onchange="showMsg('form_indi2','onchange는 요소에 변화가 생기면 발생');"
             >
+        
             <div class="border indicator" id="form_indi"></div>
             <div class="border indicator" id="form_indi2"></div>
+            
+            <form onreset="alert('onreset: 초기화되었습니다.')" onsubmit="alert('onsubmit: 제출되었습니다.');">
+                <input type="text" oninvalid="alert('oninvalid: 뭐라도 입력하시오!!!');" required>
+                <input type="submit">
+                <input type="reset">
+                검색: <input type="search" onsearch="alert(`onsearch: ${this.value}를 검색 중입니다.`);">
+
+                <div>
+                    <p style="margin-left:10px;">복권을 긁어보자.</p>
+                    <input type="text" value="lllllllllllllllllllllllllllllll" onselect="this.value='onselect: 꽝!'" style="width: 100px;">
+                    <p onselect="alert('');">llll</p>
+                </div>
+
+            </form>
         </div>
 
         <div class="container">            
             <h2>드래그 이벤트</h2>
             <div class="ball" draggable="true"   
                 ondragstart="showMsg('indicator', 'ondragstart는 이동을 시작하면 발생합니다.');"
-                ondragend="showMsg('indicator2', 'ondragend는 손을 떼는 순간 발생합니다.');">
-                
-            </div>                        
+                ondragend="showMsg('indicator2', 'ondragend는 손을 떼는 순간 발생합니다.');">                
+            </div>
             
             <div class="indicator_area">
                 <div class="border indicator" id="indicator"></div>
@@ -115,60 +149,34 @@
                 ondrop="showMsg('indicator', 'ondrop은 타겟에 넣으면 발생합니다.'); colorChange('target', 'red'); ">
             </div>        
         </div>
- 
 
+        <div class="container">
+            <h2>Keyboard & Mouse</h2>
+            <input
+                onkeypress="alert('onkeypress: 키를 누름');"    
+                onkeydown="showMsg('io_indi', 'onkeydown: 키를 계속 누르고 있음');"        
+                onkeyup="showMsg('io_indi','onkeyup: 키에서 손을 떼면');"    
+            >
+            <div class="border indicator" id="io_indi"></div>
+            <div class="ball" id="ioball"
+                onclick="colorChange('ioball','skyblue');"
+                ondblclick="colorChange('ioball','blue');"
+                onwheel="colorChange('ioball', 'aquamarine');"
+                onmouseup="alert('onmouseup: 손 뗌');"
+                onmousemove="showMsg('io_indi','onmousemove: 위로 지나감');"
+                onmouseout="showMsg('io_indi','onmouseout: 벗어남');"
+                onmousedown="showMsg('io_indi','onmousedown: 누르는 중');"
+               >
 
-        form
-
-        onfocus 포커스를 가질 때
-        onchange 요소가 변할 떄
+                
+            </div>
+            <input
+                oncopy="alert('oncopy는 복사');"
+                oncut="alert('oncut은 잘라내기');"
+                onpaste="alert('onpaste는 붙여넣기');"
+            type="text">
+        </div>
         
-        
-        oncontextmenu 컨텍스트 메뉴가 트리거
-        oninput 입력을 받을 때
-        
-        
-        
-        oninvalid 무효일때
-        onreset 리셋버튼 클릭
-        
-        <input type=“search” onsearch=“alert(‘onsearch’);” />
-        
-        <input type=“text” 
-        onselect=“scratch(this);”/>
-        
-        function scratch() }
-          this.
-        }
-        
-        onsubmit submitted
-        
-        keyboard
-        
-        onkeydown 누르는 중
-        onkeypress 누름
-        onkeyup 뗌
-        
-        mouse
-        
-        onclick 클릭
-        ondblclick 더블클릭
-        onmousedown 마우스 누름
-        onmousemove 위로 지나감
-        onmouseout 벗어남
-        onmoseup 뗌
-        onwheel 요소 위로 휠 업 다운
-        
-
-        clipboard
-
-        oncopy
-        oncut
-        onpaste
-        
-
-
-
     <script>
         
         function colorChange(tgt, color) {
@@ -178,14 +186,7 @@
         function showMsg(tgt, msg) {
             document.getElementById(tgt).innerHTML = msg;
         }
-        function bigger(el) {
-            el.style.width = "200px";
-            el.style.height = "200px";
-        }
-        function smaller(el) {
-            el.style.width = "100px";
-            el.style.height = "100px";
-        }
+        
         function hide(id) {
             var el = document.getElementById(id);
             el.style.display = "none";
