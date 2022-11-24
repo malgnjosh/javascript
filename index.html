@@ -9,6 +9,7 @@
             .ball-black { background: black; }
             .ball-large { height: 200px; width: 200px; }
             .ball-flat { width: 200px; }
+            .square { height: 100px; width: 100px; padding: 10px; border: 2px solid black; margin: 1px; background: mediumaquamarine }
             #indicator { float: right; height: 50px; width: 150px; }
             #container { height: 1000px; width: 1000px; }
             .border { border: black solid 1px; }
@@ -81,6 +82,13 @@
         <button id="btn-p-2">prop("checked", true)</button>
 
         <p>checked disabled 등 native property 를 제거하는데 사용하지 말라. 사용자 정의 프로퍼티는 제거가 가능</p>
+        </section>
+
+        <section>
+            <h2>style</h2>
+            <div id="style-square" class="square"></div>
+            CSS() <div id="style-result"></div>
+
         </section>
     </body>
 </html>

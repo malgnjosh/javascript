@@ -67,4 +67,15 @@ $(function () { // $(document).ready(function() {}) 와 같다.
         $("#checkbox2").prop("checked", true);
         $("#checkbox2").prop("프로퍼티", 0);
     })
+    let color = $("#style-square").css("background");
+    //  $("#style-square").css("background", "black");
+    let width = $("#style-square").width();
+    let innerWidth = $("#style-square").innerWidth(); // padding 포함
+    let outerWidth = $("#style-square").outerWidth(); // border 포함
+    let realOuterWidth = $("#style-square").outerWidth(true); // margin 포함 
+    let height = $("#style-square").height();
+    
+    $("#style-result").text(realOuterWidth);
+ 
+
 });
