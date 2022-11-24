@@ -1,19 +1,37 @@
 $(function () {
 
     $("#ac").click(function() {
-        $(".ball").addClass("ball-blue");
+        $("#ca-ball").addClass("ball-blue");
     });
 
     $("#hc").click(function() {
-        if($(".ball").hasClass("ball-blue")) alert("찾았다!");
+        if($("#ca-ball").hasClass("ball-blue")) alert("찾았다!");
         else alert("없다!");
     })
 
     $("#rc").click(function() {
-        $(".ball").removeClass("ball-blue");
+        $("#ca-ball").removeClass("ball-blue");
     })
 
     $("#tc").click(function() {
-        $(".ball").toggleClass("ball-blue");
+        $("#ca-ball").toggleClass("ball-blue");
+    })
+
+    $("#tc2").click(function() {
+        $("#ca-ball").toggleClass("ball-blue ball-red");
+        //$("#ca-ball").toggleClass(["ball-blue", "ball-red"]);
+    })
+
+    $("#tc3").click(function() {
+        let state = $("#ca-ball").hasClass("ball-red");
+        $("#ca-ball").toggleClass("ball-flat", state);
+    })
+
+    $("#tc4").click(function() {
+        let state = $("#ca-ball").hasClass("ball-blue");
+        $("#ca-ball").toggleClass(function() {
+            if(state) return "ball-flat";
+            else return "ball-large";
+        });
     })
 });

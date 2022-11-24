@@ -1,53 +1,16 @@
 <html>
     <head>
         <style>
-            .ball {
-                height: 100px;
-                width: 100px;
-                border-radius: 50%;
-                margin: 10px;
-            }
-
-            .ball-red {
-                background: red;
-            }
-
-            .ball-blue {
-                background: blue;
-            }
-
-            .ball-black {
-                background: black;
-            }
-
-            .ball-large {
-                height: 200px;
-                width: 200px;
-            }
-
-            .ball-flat {
-                width: 200px;
-            }
-
-            #indicator {
-                float: right;
-                height: 50px;
-                width: 150px;
-            }
-
-            #container {
-                height: 1000px;
-                width: 1000px;
-            }
-            .border {
-                border: black solid 1px;
-            }
-            #target {
-                float: right;
-                margin: 50px;
-                height: 200px;
-                width: 200px;
-            }
+            .ball { height: 100px; width: 100px; border: solid 1px bisque; border-radius: 50%; margin: 10px; }
+            .ball-red { background: red; }
+            .ball-blue { background: blue; }
+            .ball-black { background: black; }
+            .ball-large { height: 200px; width: 200px; }
+            .ball-flat { width: 200px; }
+            #indicator { float: right; height: 50px; width: 150px; }
+            #container { height: 1000px; width: 1000px; }
+            .border { border: black solid 1px; }
+            #target { float: right; margin: 50px; height: 200px; width: 200px; }
         </style>
         <script src="./script/jquery-3.6.1.js"></script>
         <script src="./script/script.js"></script>
@@ -56,18 +19,26 @@
     <body>
         <h1>Manipulation</h1>
         <p>DOM을 조작하는 jquery 메소드들에 대해서 알아보자!</p>
-        <section>
-            <h2>Class Attribute</h2>
-            <div class="ball"></div>
-            <button id="ac">.addClass("ball-blue")</button>
-            <button id="rc">.removeClass("ball-blue")</button>
-            <button id="hc">.hasClass("ball-blue")</button>
-            <button id="tc">.toggleClass("ball-blue")</button>
+    
+        <h2>Class Attribute</h2>
+        <div id="ca-ball" class="ball"></div>
+        <h3>add/remove/hasClass</h3>
+        <button id="ac">.addClass("ball-blue")</button>
+        <button id="rc">.removeClass("ball-blue")</button>
+        <button id="hc">.hasClass("ball-blue")</button>
 
-            <h2>Toggle Class</h2>
-            <p>toggleClass("classname") addClass/removeClass</p>
-            <p>toggleClass(" [class1, class2, ...]") addClasses/removeClasses</p>
-        </section>
+        <h3>Toggle Class</h3>
+        <button id="tc">.toggleClass("ball-blue")</button>
+        <button id="tc2">.toggleClass("ball-blue ball-red")</button>
+        <button id="tc3">.toggleClass("ball-flat", state)</button>
+        <button id="tc4">.toggleClass("function() { ... }")</button>
         
+        <h2>General Attribute</h2>
+        <div id="ga-ball" class="ball"></div>
+        <h3></h3>
+        <button id="btn-a-1">attr()</button>
+        <button id="btn-a-2">attr()</button>
+        <button id="btn-a-3">attr()</button>
+        <button id="btn-a-4">attr()</button>
     </body>
 </html>
