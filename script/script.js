@@ -1,4 +1,4 @@
-$(function () {
+$(function () { // $(document).ready(function() {}) 와 같다.
 
     $("#ac").click(function() {
         $("#ca-ball").addClass("ball-blue");
@@ -19,7 +19,7 @@ $(function () {
 
     $("#tc2").click(function() {
         $("#ca-ball").toggleClass("ball-blue ball-red");
-        //$("#ca-ball").toggleClass(["ball-blue", "ball-red"]);
+        //$("#ca-ball").toggleClass(["ball-blue", "ball-red"]); 배열도 가능
     })
 
     $("#tc3").click(function() {
@@ -33,5 +33,38 @@ $(function () {
             if(state) return "ball-flat";
             else return "ball-large";
         });
+    })
+
+    $("#btn-a-1").click(function() {
+        let opt = $("#selectbox option:selected").val();
+        let temp = $("#ga-ball").attr(opt);
+        $(this).attr("value", `attr("${opt}")`);
+        $("#ga-result").text(temp);
+    })
+
+    $("#btn-a-2").click(function() {
+        $("#ga-ball").attr("class", "ball-blue");
+    })
+
+    $("#btn-a-3").click(function() {
+        $("#ga-ball").attr("class", "ball ball-blue");
+    })
+
+    $("#btn-a-4").click(function() {
+        $("#ga-ball").removeAttr("class");
+    })
+
+    $("#checkbox").click(function() {
+        $("#prop-result").text("attr(\"checked\") => " + $(this).attr("checked"));
+        $("#prop-result2").text("prop(\"checked\") => " + $(this).prop("checked"));
+    })
+
+    $("#btn-p-1").click(function() {
+        $("#checkbox2").removeProp("checked");
+        $("#checkbox2").removeProp("프로퍼티");
+    })
+    $("#btn-p-2").click(function() {
+        $("#checkbox2").prop("checked", true);
+        $("#checkbox2").prop("프로퍼티", 0);
     })
 });

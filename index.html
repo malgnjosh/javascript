@@ -1,6 +1,8 @@
 <html>
     <head>
         <style>
+            section { margin-bottom: 50px;}
+            div { margin-bottom: 10px;} 
             .ball { height: 100px; width: 100px; border: solid 1px bisque; border-radius: 50%; margin: 10px; }
             .ball-red { background: red; }
             .ball-blue { background: blue; }
@@ -20,7 +22,8 @@
         <h1>Manipulation</h1>
         <p>DOM을 조작하는 jquery 메소드들에 대해서 알아보자!</p>
     
-        <h2>Class Attribute</h2>
+        <section>
+        <h2>* Class Attribute</h2>
         <div id="ca-ball" class="ball"></div>
         <h3>add/remove/hasClass</h3>
         <button id="ac">.addClass("ball-blue")</button>
@@ -32,13 +35,52 @@
         <button id="tc2">.toggleClass("ball-blue ball-red")</button>
         <button id="tc3">.toggleClass("ball-flat", state)</button>
         <button id="tc4">.toggleClass("function() { ... }")</button>
+        </section>
         
-        <h2>General Attribute</h2>
-        <div id="ga-ball" class="ball"></div>
-        <h3></h3>
-        <button id="btn-a-1">attr()</button>
-        <button id="btn-a-2">attr()</button>
-        <button id="btn-a-3">attr()</button>
-        <button id="btn-a-4">attr()</button>
+        <section>
+        <h2>* General Attribute - attr</h2>
+        <div id="ga-ball" class="ball" 속성="값"></div>
+        <h3>getter</h3>
+        <p>attr("속성의 이름")은 해당 속성의 값을 가져온다.</p>
+        <select id="selectbox">
+            <option value="id">id</option>
+            <option value="class">class</option>
+            <option value="속성">속성</option>
+        </select>
+        <button id="btn-a-1">get</button>
+        <div id="ga-result"></div>
+
+        <span style="border:1px solid skyblue; display: block;">
+            <p>요소에서 값을 꺼낼 때는 val()사용</p>
+            <p>요소의 텍스트 조작은 text()를 사용</p>
+            <p>html을 삽입하거나 불러올 때는 html()을 사용</p>
+        </span>
+
+        <h3>setter</h3>
+        <p>attr("속성", "값")은 해당 속성에 값을 넣어준다.</p>
+        <button id="btn-a-2">attr("class", "ball-blue")</button>
+        <p>addClass는 클래스를 추가해주지만 attr을 이용할 경우 클래스를 대체한다.</p>
+        <button id="btn-a-3">attr("class", "ball ball-blue")</button>
+        <button id="btn-a-4">removeAttr("class")</button>
+        </section>
+        
+        <section>
+        <h2>*General Attribute - prop</h2>
+        <h3>attr과 prop의 차이</h3>
+        <p>jquery 버전 1.6 이전까지는 attr()만이 존재했으나, 이후 버전에서 prop()이 등장하면서 프로퍼티를 명시적으로 다룰 수 있게 되었다.</p>
+        <p>현재는 프로퍼티를 attr로 불러올 경우 초기값만을 반환</p>
+        <p>어트리뷰트는 checked="checked" 와 같은 속성과 값의 쌍을 의미 / 프로퍼티는 DOM 트리 내부에서의 값 checked의 프로퍼티값은 true</p>
+        <p>ex) id="myid" / checked </p>
+
+        <input id="checkbox" type="checkbox" checked>체크박스
+        <div id="prop-result"></div>
+        <div id="prop-result2"></div>
+
+        <input id="checkbox2" type="checkbox">jquery
+        <button id="btn-p-1">removeProp("checked")</button>
+        <button id="btn-p-2">prop("checked", true)</button>
+
+        <p>checked disabled 등 native property 를 제거하는데 사용하지 말라. 사용자 정의 프로퍼티는 제거가 가능</p>
+        </section>
     </body>
 </html>
