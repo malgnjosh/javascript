@@ -19,7 +19,7 @@ $(function () { // $(document).ready(function() {}) 와 같다.
 
     $("#tc2").click(function() {
         $("#ca-ball").toggleClass("ball-blue ball-red");
-        //$("#ca-ball").toggleClass(["ball-blue", "ball-red"]); 배열도 가능
+        // $("#ca-ball").toggleClass(["ball-blue", "ball-large"] ["ball-black", "ball-flat"]); //배열도 가능
     })
 
     $("#tc3").click(function() {
@@ -76,6 +76,5 @@ $(function () { // $(document).ready(function() {}) 와 같다.
     let height = $("#style-square").height();
     
     $("#style-result").text(realOuterWidth);
- 
 
 });
